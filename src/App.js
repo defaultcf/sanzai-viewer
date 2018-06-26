@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { getSanzai } from "./actions";
 import './App.css';
 
 class App extends Component {
@@ -7,6 +9,7 @@ class App extends Component {
     this.state = {
       repo: "",
     };
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -18,7 +21,7 @@ class App extends Component {
   }
 
   handleSubmit(e) {
-    console.info(this.state.repo);
+    this.props.dispatch(getSanzai(this.state.repo));
     e.preventDefault();
   }
 
@@ -34,4 +37,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  sanzai: state.sanzai,
+});
+
+export default connect(mapStateToProps)(App);
