@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      repo: "",
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange(e) {
+    const { target } = e;
+    const { name, value } = target;
+    this.setState({[name]: value});
+  }
+
+  handleSubmit(e) {
+    console.info(this.state.repo);
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="repo" value={this.state.repo} onChange={this.handleInputChange} />
+          <input type="submit" />
+        </form>
       </div>
     );
   }
