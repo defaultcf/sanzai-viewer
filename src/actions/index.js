@@ -12,8 +12,7 @@ export const getSanzai = repo => {
       const sanzai = await await getCSV(csv_path[0].url);
       await dispatch(setSanzai(sanzai));
     } catch(e) {
-      alert(e);
+      alert(e.message);
     }
   }
 };
-
