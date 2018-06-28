@@ -37,4 +37,27 @@ export const getCSV = async path => {
   return await content.split("\n")
     .map(row => row.split(","))
     .slice(1, -1);
+};
+
+export const calcDoughnut = async sanzai => {
+  const labels = await sanzai.map(v => v[4])
+    .filter((x, i, self) => self.indexOf(x) === i)
+
+  let data = [];
+
+  await labels.forEach(cat => {
+    const filterd = sanzai.filter(v => v[4] === cat);
+    const sum = filterd.map(v => Number(v[2]))
+      .reduce((pre, cur) => pre + cur);
+    data = [
+      ...data,
+      sum,
+    ];
+  });
+  const length = data.length;
+  return {
+    data,
+    labels,
+    length,
+  };
 }
