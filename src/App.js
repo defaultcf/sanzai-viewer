@@ -37,8 +37,11 @@ class App extends Component {
     };
     return (
       <div className="App">
+        <h1>Sanzai Viewer</h1>
+        <a href="https://raw.githubusercontent.com/i544c/sanzai-viewer/master/README.md">README</a>
+        <hr />
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="repo" value={this.state.repo} onChange={this.handleInputChange} />
+          <input type="text" name="repo" value={this.state.repo} onChange={this.handleInputChange} placeholder="i544c/sanzai" />
           <input type="submit" />
         </form>
 
