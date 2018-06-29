@@ -32,7 +32,7 @@ class App extends Component {
     const calcBackground = () => {
       let arr = [];
       for(let i = 0; i < doughnut_length; i++)
-        arr.push(randomMC.getColor());
+        arr.push(randomMC.getColor({text: doughnut_labels[i]}));
       return arr;
     };
     return (
